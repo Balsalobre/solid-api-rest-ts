@@ -4,10 +4,10 @@ import Mail from "nodemailer/lib/mailer";
 
 export class MailtrapMailProvider implements IMailProvider {
 
-    private tasporter: Mail;
+    private emailSender: Mail;
 
     constructor() {
-        this.tasporter = nodemailer.createTransport({
+        this.emailSender = nodemailer.createTransport({
             host: 'smtp.mailtrap.io',
             port: 2525,
             auth: {
@@ -18,7 +18,7 @@ export class MailtrapMailProvider implements IMailProvider {
     }
 
     async sendMail(message: IMessage): Promise<void> {
-        await this.tasporter.sendMail({
+        await this.emailSender.sendMail({
             to: {
                 name: message.to.name,
                 address: message.to.email

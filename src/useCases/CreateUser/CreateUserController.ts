@@ -11,11 +11,11 @@ export class CreateUserController {
 
         try {
             await this.createUserCase.execute({ name, email, password });
-            
+
             return response.status(201).send();
-        } catch(e) {
+        } catch(e: unknown) {
             return response.status(400).json({
-                message: e.message || 'Unexpected error.',
+                message: e instanceof Error ? e.message : 'Unexpected error.',
             })
         }
     }
