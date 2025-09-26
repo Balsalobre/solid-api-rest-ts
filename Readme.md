@@ -16,27 +16,31 @@ Este proyecto implementa una API REST siguiendo los principios SOLID (Single Res
 
 ```
 src/
-├── app.ts                      # Configuración de Express
+├── app.ts                      # Configuración principal de Express
 ├── server.ts                   # Punto de entrada del servidor
 ├── routes.ts                   # Definición de rutas
 ├── config/
-│   └── Config.ts              # Configuración centralizada con variables de entorno
+│   └── Config.ts               # Configuración centralizada y variables de entorno
 ├── entities/
-│   └── User.ts                # Entidad Usuario
+│   └── User.ts                 # Entidad Usuario
+├── middlewares/
+│   └── validateCreateUser.ts    # Middleware de validación para creación de usuario
 ├── repositories/
-│   └── IUsersRepository.ts    # Interface del repositorio
-├── providers/
-│   ├── IMailProvider.ts       # Interface del proveedor de email
+│   ├── IUsersRepository.ts      # Interfaz del repositorio de usuarios
 │   └── implementations/
-│       ├── MailtrapMailProvider.ts     # Implementación Mailtrap
 │       └── PostgresUsersRepository.ts  # Implementación PostgreSQL (fake)
+├── providers/
+│   ├── IMailProvider.ts         # Interfaz del proveedor de email
+│   └── implementations/
+│       ├── MailtrapMailProvider.ts     # Implementación de Mailtrap para envío de emails
+│       └── PostgresUsersRepository.ts  # Implementación de repositorio de usuarios (duplicada para ejemplo)
 └── useCases/
-    └── CreateUser/
-        ├── CreateUserController.ts  # Controlador
-        ├── CreateUserDTO.ts        # Data Transfer Object
-        ├── CreateUserUseCase.ts    # Lógica de negocio
-        ├── CreateUserUseCase.spec.ts # Tests unitarios
-        └── index.ts               # Configuración de dependencias
+   └── CreateUser/
+      ├── CreateUserController.ts     # Controlador para crear usuario
+      ├── CreateUserDTO.ts           # Data Transfer Object
+      ├── CreateUserUseCase.ts       # Lógica de negocio
+      ├── CreateUserUseCase.test.ts  # Tests unitarios (Bun)
+      └── index.ts                   # Configuración de dependencias
 ```
 
 ## Configuración
@@ -81,7 +85,24 @@ src/
 
 4. El servidor estará disponible en `http://localhost:PORT`
 
-## Scripts Disponibles
+## Probar la API con REST Client
+
+Puedes probar los endpoints de la API directamente desde VS Code usando la extensión [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). Solo necesitas crear un archivo `.http` o `.rest` con las peticiones y ejecutarlas desde el editor.
+
+Ejemplo de petición:
+
+```http
+POST http://localhost:3334/users
+Content-Type: application/json
+
+{
+   "name": "John Doe",
+   "email": "john@example.com",
+   "password": "password123"
+}
+```
+
+---
 
 - `bun run start` - Ejecuta el servidor
 - `bun run dev` - Ejecuta el servidor en modo desarrollo con watch
@@ -91,24 +112,7 @@ src/
 - `bun run lint:fix` - Ejecuta ESLint y arregla errores automáticamente
 - `bun run format` - Formatea el código con Prettier
 - `bun run format:check` - Verifica el formato del código
-
-## API Endpoints
-
-### POST /users
-Crea un nuevo usuario.
-
-**Body:**
-```json
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "password123"
-}
-```
-
-**Responses:**
-- `201` - Usuario creado exitosamente
-- `400` - Error de validación o usuario ya existe
+- `bun test` - Ejecuta los tests unitarios
 
 ## Principios SOLID Aplicados
 
