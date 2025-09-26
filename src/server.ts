@@ -1,5 +1,9 @@
 import { app } from './app';
+import { Config } from './config/Config';
 
-app.listen(3333);
+// Validate environment variables
+Config.validate();
 
-console.log(`APP listen on http://localhost:3333`);
+app.listen(Config.PORT);
+
+console.log(`${Config.APP_NAME} listening on http://localhost:${Config.PORT}`);
