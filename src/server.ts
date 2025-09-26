@@ -1,7 +1,6 @@
 import { app } from './app';
 import { Config } from './config/Config';
 
-// Validate environment variables
 Config.validate();
 
 app.listen(Config.PORT);

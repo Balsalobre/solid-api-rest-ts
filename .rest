@@ -1,0 +1,49 @@
+### Crear usuario válido
+POST http://localhost:3334/users
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "password": "password123"
+}
+
+### Crear usuario con email inválido
+POST http://localhost:3334/users
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "janeexample.com",
+  "password": "password123"
+}
+
+### Crear usuario con nombre corto
+POST http://localhost:3334/users
+Content-Type: application/json
+
+{
+  "name": "J",
+  "email": "jane2@example.com",
+  "password": "password123"
+}
+
+### Crear usuario con contraseña corta
+POST http://localhost:3334/users
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "jane3@example.com",
+  "password": "123"
+}
+
+### Crear usuario duplicado
+POST http://localhost:3334/users
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "password": "password123"
+}

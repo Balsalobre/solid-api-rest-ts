@@ -11,12 +11,12 @@ export class CreateUserController {
 
         try {
             await this.createUserCase.execute({ name, email, password });
-
             return response.status(201).send();
-        } catch(e: unknown) {
-            return response.status(400).json({
-                message: e instanceof Error ? e.message : 'Unexpected error.',
-            })
+        } catch(e: any) {
+            const status = e && typeof e === 'object' && 'statusCode' in e ? e.statusCode : 400;
+            return response.status(status).json({
+                message: e instanceof Error ? e.message : 'Unexpected error.'
+            });
         }
     }
 }
