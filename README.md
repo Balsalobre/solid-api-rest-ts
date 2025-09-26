@@ -1,6 +1,6 @@
 # 🚀 SOLID API REST con TypeScript
 
-API REST de ejemplo construida con Node.js, Express y TypeScript, aplicando los principios SOLID de manera práctica y sencilla. Ideal para aprender buenas prácticas de arquitectura y compartir en redes.
+API REST de ejemplo construida con Node.js, Express y TypeScript, aplicando los principios SOLID de manera práctica y sencilla. Ideal para aprender buenas prácticas de arquitectura.
 
 ---
 
@@ -88,7 +88,3 @@ Aplicar SOLID desde el inicio permite que tu código sea más mantenible, escala
 
 ## 📣 Autor
 - [@cbalsalobre](https://github.com/cbalsalobre)
-
----
-
-¡Si te ha gustado, compártelo y dale una estrella! ⭐
